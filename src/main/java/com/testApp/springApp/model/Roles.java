@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -16,18 +18,29 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "roles")
 public class Roles {
 
-
     @Id
-    @Column(name = "role_id")
+    @Column(name = "roleId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "defaultPermissions")
     private String defaultPermissions;
+
+    @Column(name = "createdAt")
+    @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Column(name = "updatedAt")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "roles")

@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -13,26 +16,56 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "employees")
 public class Employees {
 
     @Id
-    @Column(name = "employee_id")
+    @Column(name = "employeeId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "surname")
     private String surname;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "image")
     private String image;
-    private String password;
+
+//    @Column(name = "password")
+//    private String password;
+
+    @Column(name = "address")
     private String address;
-    private String birthDate;
-    private double salary;
-    private double DSMF;
+
+    @Column(name = "contact")
+    private String contact;
+
+    @Column(name = "birthdate")
+    private String birthdate;
+
+    @Column(name = "salary")
+    private BigDecimal salary;
+
+    private double DSMF;//TODO DEQIQLESDIR!
+
+    @CreationTimestamp
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
+
+    @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "educationId")
     private Education educationId;
 
     @OneToMany(mappedBy = "employees")// cascade

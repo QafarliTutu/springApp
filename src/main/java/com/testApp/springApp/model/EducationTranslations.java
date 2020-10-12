@@ -1,26 +1,46 @@
 package com.testApp.springApp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "educationTranslations")
 public class EducationTranslations {
 
     @Id
+    @Column(name = "eTranslateId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @CreationTimestamp
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "education_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "languageId")
     private Language language;
 
 
-    @ManyToOne
-    @JoinColumn(name = "language_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "educationId")
     private Education education;
 
 }

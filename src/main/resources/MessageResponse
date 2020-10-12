@@ -1,0 +1,4 @@
+code: 1L         Message: ERROR: Email already exists!
+code: 2L         Message: ERROR: Contact already exists!
+code: 3L         Message: SUCCESS: Employee successfully registered!
+code: 4L         Message: ERROR: Email already exists!

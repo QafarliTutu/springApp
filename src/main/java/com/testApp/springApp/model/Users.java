@@ -1,6 +1,8 @@
 package com.testApp.springApp.model;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,25 +10,33 @@ import java.util.List;
 
 @Entity
 @Builder
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "users")
 public class Users {
 
-
     @Id
-    @Column(name = "user_id")
+    @Column(name = "userId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    @Column(name = "password")
     private String password;
-    private String permissions;
+
+    @CreationTimestamp
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
+
+    @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employeeId")
     private Employees employees;
 
     @OneToMany(mappedBy = "users")
