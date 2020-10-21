@@ -1,9 +1,6 @@
 package com.testApp.springApp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,11 +10,12 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Builder
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "employees")
-public class Employees {
+public class Employee {
 
     @Id
     @Column(name = "employeeId")
@@ -66,9 +64,9 @@ public class Employees {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "educationId")
-    private Education educationId;
+    private Education education;
 
-    @OneToMany(mappedBy = "employees")// cascade
+    @OneToMany(mappedBy = "employee")// cascade
     private Set<Users> users;
 
     @Override

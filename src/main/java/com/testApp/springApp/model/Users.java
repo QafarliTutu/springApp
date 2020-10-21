@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
@@ -37,7 +38,7 @@ public class Users {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employeeId")
-    private Employees employees;
+    private Employee employee;
 
     @OneToMany(mappedBy = "users")
     private List<UsersRoles> users_roles;
@@ -46,6 +47,6 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                "employee="+ employees;
+                "employee="+ employee;
     }
 }

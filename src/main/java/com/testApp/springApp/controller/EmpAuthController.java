@@ -1,9 +1,8 @@
 package com.testApp.springApp.controller;
 
 
-import com.testApp.springApp.payload.request.EmployeeRegisterRequest;
-import com.testApp.springApp.services.EmpService;
-import org.springframework.http.ResponseEntity;
+import com.testApp.springApp.dto.EmployeeDto;
+import com.testApp.springApp.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -11,15 +10,20 @@ import org.springframework.web.bind.annotation.*;
 public class EmpAuthController {
 
 
-    private EmpService empService;
+    private EmployeeService employeeService;
 
-    public EmpAuthController(EmpService empService) {
-        this.empService = empService;
+    public EmpAuthController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @PostMapping("register")
-    public ResponseEntity<?> EmpRegister(@RequestBody EmployeeRegisterRequest regRequest) {
-        return empService.EmpRegister(regRequest);
+    public EmployeeDto createEmployee(@RequestBody EmployeeDto employeeDto) {
+        return employeeService.createEmployee(employeeDto);
+    }
+
+    @GetMapping("/{id}")
+    public EmployeeDto findById(@PathVariable("id") Long id) {
+        return employeeService.findById(id);
     }
 
 

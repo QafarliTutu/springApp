@@ -32,10 +32,10 @@ public class Education {
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "education")
+    @OneToMany(mappedBy = "educationId")
     private Set<EducationTranslations> eTranslations;
 
-    @OneToMany(mappedBy = "educationId")
-    private List<Employees> employees;
+    @OneToMany(mappedBy = "education")
+    private List<Employee> employees;
 
 }

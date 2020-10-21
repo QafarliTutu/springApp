@@ -41,6 +41,6 @@ public class EducationTranslations {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "educationId")
-    private Education education;
+    private Education educationId;
 
 }

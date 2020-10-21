@@ -1,4 +1,4 @@
-package com.testApp.springApp.payload.request;
+package com.testApp.springApp.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,12 +6,18 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.Set;
+
+
 
 @Getter
 @Setter
 @Validated
-public class UserRegisterRequest {
+public class UserDto {
+
+    private Long id;
+
+    @NotBlank
+    private Long employeeId;
 
     @NotBlank
     private String name;
@@ -20,7 +26,6 @@ public class UserRegisterRequest {
     @Size(min = 8)
     private String password;
 
-    @NotBlank
-    private Set<String> roleName;
+
 
 }
