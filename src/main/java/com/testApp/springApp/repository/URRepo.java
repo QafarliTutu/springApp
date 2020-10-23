@@ -7,8 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface URRepo extends JpaRepository<UsersRoles,Long> {
+public interface URRepo extends JPA<UsersRoles> {
 
-    Optional<UsersRoles> findById(Long id);
 
 }

@@ -2,6 +2,7 @@ package com.testApp.springApp.services;
 
 
 import com.testApp.springApp.dto.EducationDto;
+import com.testApp.springApp.exceptions.EmployeeAlreadyExistEx;
 import com.testApp.springApp.exceptions.EmployeeNotFoundEx;
 import com.testApp.springApp.model.Education;
 import com.testApp.springApp.model.Employee;
@@ -27,15 +28,18 @@ public class EmployeeService {
 
 
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
-        Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeDto, employee);
-       // Education education = new Education();
-        Education byId = educationService.findById(employeeDto.getEducationId());
-       // BeanUtils.copyProperties(educationDto, education);
-        employee.setEducation(byId);
-        employeesRepo.save(employee);
-        BeanUtils.copyProperties(employee, employeeDto);
-        return employeeDto;
+        boolean existByEmail = employeesRepo.existsByEmail(employeeDto.getEmail());
+        if(!existByEmail){
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            Education education = new Education();
+            EducationDto educationDto = educationService.findById(employeeDto.getEducationId());
+            BeanUtils.copyProperties(educationDto, education);
+            employee.setEducation(education);
+            employeesRepo.save(employee);
+            BeanUtils.copyProperties(employee, employeeDto);
+            return employeeDto;
+        }else throw new EmployeeAlreadyExistEx();
     }
 
     public EmployeeDto findById(Long id) {

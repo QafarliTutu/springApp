@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface EducationRepo extends JpaRepository<Education,Long> {
+public interface EducationRepo extends JPA<Education> {
 
-    Optional<Education> findById(long id);
+
 }

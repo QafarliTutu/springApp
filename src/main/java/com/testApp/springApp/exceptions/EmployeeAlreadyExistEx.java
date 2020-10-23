@@ -2,10 +2,9 @@ package com.testApp.springApp.exceptions;
 
 public class EmployeeAlreadyExistEx extends InvalidStateException {
 
-    private static final String MESSEGE = "Employee already exists with this email.";
+    private static final String MESSAGE = "Employee matching the given email already exists.";
 
-
-    public EmployeeAlreadyExistEx(String message) {
-        super(MESSEGE);
+    public EmployeeAlreadyExistEx() {
+        super(MESSAGE);
     }
 }

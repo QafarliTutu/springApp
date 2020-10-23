@@ -18,11 +18,11 @@ public class EducationService {
         this.educationRepo = educationRepo;
     }
 
-    public Education findById(Long id){
+    public EducationDto findById(Long id){
         EducationDto educationDto = new EducationDto();
         Optional<Education> byId = educationRepo.findById(id);
         if(byId.isPresent()){
-            return byId.get();
+            return educationDto;
         }else throw new EducationNotFoundEx();
     }
 
