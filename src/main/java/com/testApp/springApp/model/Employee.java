@@ -71,9 +71,22 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employees{" +
+        return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", salary=" + salary +
+                ", DSMF=" + DSMF +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
+                ", education=" + education +
+                ", users=" + users +
                 '}';
     }
 }

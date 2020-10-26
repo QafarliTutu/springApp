@@ -1,12 +1,17 @@
 package com.testApp.springApp.dto;
 
+import com.testApp.springApp.model.Education;
+import com.testApp.springApp.model.Users;
 import lombok.Getter;
 import lombok.Setter;
 
 import org.springframework.validation.annotation.Validated;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -41,4 +46,27 @@ public class EmployeeDto {
 
     @NotBlank(message = "Education should not be blank.")
     private Long educationId;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
+
+    private Set<Users> users;
+
+    @Override
+    public String toString() {
+        return "EmployeeDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
+                ", address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", educationId=" + educationId +
+                '}';
+    }
 }

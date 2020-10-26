@@ -22,6 +22,9 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "password")
     private String password;
 
@@ -36,7 +39,7 @@ public class Users {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "employeeId")
     private Employee employee;
 
@@ -47,6 +50,13 @@ public class Users {
     public String toString() {
         return "Users{" +
                 "id=" + id +
-                "employee="+ employee;
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
+                ", employee=" + employee +
+                ", users_roles=" + users_roles +
+                '}';
     }
 }
