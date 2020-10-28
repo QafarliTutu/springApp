@@ -18,12 +18,20 @@ public class EducationService {
         this.educationRepo = educationRepo;
     }
 
-    public EducationDto findById(Long id){
+    public EducationDto findById(Long id) {
         EducationDto educationDto = new EducationDto();
         Optional<Education> byId = educationRepo.findById(id);
-        if(byId.isPresent()){
+        if (byId.isPresent()) {
+            BeanUtils.copyProperties(byId.get(), educationDto);
             return educationDto;
-        }else throw new EducationNotFoundEx();
+        } else throw new EducationNotFoundEx();
     }
 
+    public EducationDto createEducation(EducationDto educationDto) {
+        Education education = new Education();
+        BeanUtils.copyProperties(educationDto, education);
+        educationRepo.save(education);
+        BeanUtils.copyProperties(education, educationDto);
+        return educationDto;
+    }
 }

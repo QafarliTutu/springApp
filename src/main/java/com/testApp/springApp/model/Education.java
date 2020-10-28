@@ -19,6 +19,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Table(name = "education")
 public class Education {
+
     @Id
     @Column(name = "educationId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,10 +33,10 @@ public class Education {
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "educationId")
-    private Set<EducationTranslations> eTranslations;
-
     @OneToMany(mappedBy = "education")
     private List<Employee> employees;
+
+    @OneToMany(mappedBy = "educationId")
+    private Set<EducationTranslations> eTranslations;
 
 }

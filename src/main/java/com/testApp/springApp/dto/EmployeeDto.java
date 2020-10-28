@@ -53,20 +53,4 @@ public class EmployeeDto {
 
     private LocalDateTime deletedAt;
 
-    private Set<Users> users;
-
-    @Override
-    public String toString() {
-        return "EmployeeDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", image='" + image + '\'' +
-                ", address='" + address + '\'' +
-                ", contact='" + contact + '\'' +
-                ", birthdate='" + birthdate + '\'' +
-                ", educationId=" + educationId +
-                '}';
-    }
 }

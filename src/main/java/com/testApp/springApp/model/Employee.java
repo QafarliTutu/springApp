@@ -34,9 +34,6 @@ public class Employee {
     @Column(name = "image")
     private String image;
 
-//    @Column(name = "password")
-//    private String password;
-
     @Column(name = "address")
     private String address;
 
@@ -62,31 +59,11 @@ public class Employee {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "educationId")
     private Education education;
 
-    @OneToMany(mappedBy = "employee")// cascade
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.REMOVE)// cascade
     private Set<Users> users;
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", image='" + image + '\'' +
-                ", address='" + address + '\'' +
-                ", contact='" + contact + '\'' +
-                ", birthdate='" + birthdate + '\'' +
-                ", salary=" + salary +
-                ", DSMF=" + DSMF +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", deletedAt=" + deletedAt +
-                ", education=" + education +
-                ", users=" + users +
-                '}';
-    }
 }

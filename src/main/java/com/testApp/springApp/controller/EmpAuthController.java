@@ -16,15 +16,24 @@ public class EmpAuthController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("register")
+    @PostMapping("create")
     public EmployeeDto createEmployee(@RequestBody EmployeeDto employeeDto) {
         return employeeService.createEmployee(employeeDto);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public EmployeeDto findById(@PathVariable("id") Long id) {
         return employeeService.findById(id);
     }
 
+    @PutMapping("/update/{id}")
+    public EmployeeDto updateEmployee(@PathVariable("id") Long id,
+                                      @RequestBody EmployeeDto employeeDto){
+        return employeeService.updateEmployee(id,employeeDto);
+    }
 
+    @DeleteMapping("/delete/{id}")
+    public void deleteEmployee(@PathVariable("id") Long id){
+        employeeService.deleteEmployee(id);
+    }
 }

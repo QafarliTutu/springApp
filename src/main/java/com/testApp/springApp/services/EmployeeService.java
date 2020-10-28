@@ -25,11 +25,9 @@ public class EmployeeService {
 
     private final EducationService educationService;
 
-
-
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
         boolean existByEmail = employeesRepo.existsByEmail(employeeDto.getEmail());
-        if(!existByEmail){
+        if (!existByEmail) {
             Employee employee = new Employee();
             BeanUtils.copyProperties(employeeDto, employee);
             Education education = new Education();
@@ -39,29 +37,41 @@ public class EmployeeService {
             employeesRepo.save(employee);
             BeanUtils.copyProperties(employee, employeeDto);
             return employeeDto;
-        }else throw new EmployeeAlreadyExistEx();
+        } else throw new EmployeeAlreadyExistEx();
     }
 
     public EmployeeDto findById(Long id) {
-        EmployeeDto employeeDto = new EmployeeDto();
         Optional<Employee> byId = employeesRepo.findById(id);
         if (byId.isPresent()) {
+            EmployeeDto employeeDto = new EmployeeDto();
             BeanUtils.copyProperties(byId.get(), employeeDto);
             return employeeDto;
         } else throw new EmployeeNotFoundEx();
 
     }
 
-    public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto){
-        Employee employee = new Employee();
-        employee.setId(id);
-        BeanUtils.copyProperties(employeeDto,employee);
-        employeesRepo.save(employee);
-        BeanUtils.copyProperties(employee,employeeDto);
-        return employeeDto;
+    public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
+        Optional<Employee> byId = employeesRepo.findById(id);
+        if (byId.isPresent()) {
+
+            System.out.println("ById hassscode" + byId.hashCode());
+            Employee employee = byId.get();
+            BeanUtils.copyProperties(employeeDto, employee);
+            System.out.println("ById hassscode" + employee.hashCode());
+            employee.setId(id);
+            employeesRepo.save(employee);
+            BeanUtils.copyProperties(employee, employeeDto);
+            return employeeDto;
+        } else throw new EmployeeNotFoundEx();
+//        Employee employee = new Employee();
+//        employee.setId(id);
+//        BeanUtils.copyProperties(employeeDto,employee);
+//        employeesRepo.save(employee);
+//        BeanUtils.copyProperties(employee,employeeDto);
+//        return employeeDto;
     }
 
-    public void deleteEmployee(Long id){
+    public void deleteEmployee(Long id) {
         employeesRepo.deleteById(id);
     }
 

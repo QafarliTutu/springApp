@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/database_test
+    url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: secret
+    password: 808
     driver-class-name: org.postgresql.Driver
 
   jpa:

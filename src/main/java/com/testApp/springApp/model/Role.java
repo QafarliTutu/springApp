@@ -2,10 +2,7 @@ package com.testApp.springApp.model;
 
 
 import com.testApp.springApp.enums.RoleEnum;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,10 +13,11 @@ import java.util.List;
 @Entity
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "roles")
-public class Roles {
+public class Role {
 
     @Id
     @Column(name = "roleId")
@@ -43,14 +41,6 @@ public class Roles {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "roles")
+    @OneToMany(mappedBy = "role")
     private List<UsersRoles> users_roles;
-
-    @Override
-    public String toString() {
-        return "Roles{" +
-                "name=" + name +
-                "deleted_at="+ deletedAt;
-
-    }
 }

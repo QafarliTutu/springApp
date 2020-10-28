@@ -31,15 +31,12 @@ public class UserDto {
     @NotBlank
     private String name;
 
-    private String password;
-
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
 
-    private List<UsersRoles> users_roles;
 
 
 

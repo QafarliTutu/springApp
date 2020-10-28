@@ -41,11 +41,13 @@ public class UserService {
         EmployeeDto employeeDto = employeeService.findById(userDto.getEmployeeId());
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto,employee);
+        System.out.println(employee);
 
         //convert UserDto to User
         Users user = new Users();
         BeanUtils.copyProperties(userDto,user);
         user.setEmployee(employee);
+        System.out.println(user);
 
         //generate and send password
         String password = generatePassword();
@@ -55,6 +57,7 @@ public class UserService {
         user.setPassword(password);
         userRepo.save(user);
         BeanUtils.copyProperties(user,userDto);
+        System.out.println(userDto);
         return userDto;
     }
 

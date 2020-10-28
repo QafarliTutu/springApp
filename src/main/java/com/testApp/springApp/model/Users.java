@@ -39,24 +39,11 @@ public class Users {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "employeeId")
     private Employee employee;
 
     @OneToMany(mappedBy = "users")
     private List<UsersRoles> users_roles;
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", deletedAt=" + deletedAt +
-                ", employee=" + employee +
-                ", users_roles=" + users_roles +
-                '}';
-    }
 }
