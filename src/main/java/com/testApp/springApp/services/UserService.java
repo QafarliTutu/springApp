@@ -24,17 +24,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
 
-
     private final EmployeeService employeeService;
-
     private final EmailSenderService emailSenderService;
-
     private final RoleRepo roleRepo;
-
     private final UserRepo userRepo;
-
     private final UserRoleRepo userRoleRepo;
-
 
     public UserDto createUser(UserDto userDto){
         //find and convert EmployeeDto to Employee
@@ -81,7 +75,6 @@ public class UserService {
             BeanUtils.copyProperties(byId.get(), userDto);
             return userDto;
         } else throw new UserNotFoundEx();
-
     }
 
     public UserDto updateUser(Long id, UserDto userDto){
@@ -96,5 +89,4 @@ public class UserService {
     public void deleteUser(Long id){
         userRepo.deleteById(id);
     }
-
 }

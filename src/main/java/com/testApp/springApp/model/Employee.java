@@ -49,7 +49,7 @@ public class Employee {
     private double DSMF;//TODO DEQIQLESDIR!
 
     @CreationTimestamp
-    @Column(name = "createdAt")
+    @Column(name = "createdAt",updatable = false,nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp

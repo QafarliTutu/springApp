@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "educationTranslations")
-public class EducationTranslations {
+public class EducationTr {
 
     @Id
     @Column(name = "eTranslateId")
@@ -27,7 +27,7 @@ public class EducationTranslations {
     private String name;
 
     @CreationTimestamp
-    @Column(name = "createdAt")
+    @Column(name = "createdAt",updatable = false,nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp

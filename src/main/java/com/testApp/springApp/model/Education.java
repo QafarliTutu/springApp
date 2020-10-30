@@ -26,7 +26,7 @@ public class Education {
     private Long id;
 
     @CreationTimestamp
-    @Column(name = "createdAt")
+    @Column(name = "createdAt",updatable = false,nullable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
@@ -37,6 +37,6 @@ public class Education {
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "educationId")
-    private Set<EducationTranslations> eTranslations;
+    private Set<EducationTr> educationTr;
 
 }

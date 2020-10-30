@@ -1,6 +1,7 @@
 package com.testApp.springApp.handler;
 
 import com.testApp.springApp.exceptions.EmployeeNotFoundEx;
+import com.testApp.springApp.exceptions.InvalidStateException;
 import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
@@ -27,11 +28,11 @@ public class GlobalExceptionHandler extends DefaultErrorAttributes {
 
     private static final String ARGUMENT_VALIDATION_FAILED = "Argument validation failed";
 
-//    @ExceptionHandler(value = IllegalArgumentException.class)
-//    public ResponseEntity<Map<String, Object>> illegalArgumentException(IllegalArgumentException e, ServletWebRequest request) {
-//        return ofType(request, HttpStatus.BAD_REQUEST, e.getMessage());
-//    }
-//
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public ResponseEntity<Map<String, Object>> illegalArgumentException(IllegalArgumentException e, ServletWebRequest request) {
+        return ofType(request, HttpStatus.BAD_REQUEST, e.getMessage());
+    }
+
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
 //    public final ResponseEntity<Map<String, Object>> handle(MethodArgumentNotValidException ex, WebRequest request) {
 //        List<ConstraintsViolationError> validationErrors = ex.getBindingResult()
@@ -41,29 +42,29 @@ public class GlobalExceptionHandler extends DefaultErrorAttributes {
 //                .collect(Collectors.toList());
 //        return ofType(request, HttpStatus.BAD_REQUEST, ARGUMENT_VALIDATION_FAILED, validationErrors);
 //    }
-//
-//    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-//    public final ResponseEntity<Map<String, Object>> handle(MethodArgumentTypeMismatchException ex, WebRequest request) {
-//        log.trace("Method  arguments are not valid {}", ex.getMessage());
-//        return ofType(request, HttpStatus.BAD_REQUEST, ex.getMessage());
-//    }
-//
-//    @ExceptionHandler(ConstraintViolationException.class)
-//    public final ResponseEntity<Map<String, Object>> handle(ConstraintViolationException ex, WebRequest request) {
-//        log.trace("Constraints violated {}", ex.getMessage());
-//        return ofType(request, HttpStatus.BAD_REQUEST, getConstraintViolationExceptionMessage(ex));
-//    }
-//
-//    @ExceptionHandler(InvalidStateException.class)
-//    public ResponseEntity<Map<String, Object>> handle(InvalidStateException ex, WebRequest request) {
-//        return ofType(request, HttpStatus.BAD_REQUEST, ex.getMessage());
-//    }
-//    private String getConstraintViolationExceptionMessage(ConstraintViolationException ex) {
-//        return ex.getConstraintViolations()
-//                .stream()
-//                .map(ConstraintViolation::getMessage)
-//                .collect(Collectors.toList()).get(0);
-//    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public final ResponseEntity<Map<String, Object>> handle(MethodArgumentTypeMismatchException ex, WebRequest request) {
+        log.trace("Method  arguments are not valid {}", ex.getMessage());
+        return ofType(request, HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public final ResponseEntity<Map<String, Object>> handle(ConstraintViolationException ex, WebRequest request) {
+        log.trace("Constraints violated {}", ex.getMessage());
+        return ofType(request, HttpStatus.BAD_REQUEST, getConstraintViolationExceptionMessage(ex));
+    }
+
+    @ExceptionHandler(InvalidStateException.class)
+    public ResponseEntity<Map<String, Object>> handle(InvalidStateException ex, WebRequest request) {
+        return ofType(request, HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+    private String getConstraintViolationExceptionMessage(ConstraintViolationException ex) {
+        return ex.getConstraintViolations()
+                .stream()
+                .map(ConstraintViolation::getMessage)
+                .collect(Collectors.toList()).get(0);
+    }
 
     @ExceptionHandler(NotFoundException.class)
     public ResponseEntity<Map<String, Object>> handle(NotFoundException ex, WebRequest request) {

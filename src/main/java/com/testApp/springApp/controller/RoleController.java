@@ -13,18 +13,22 @@ public class RoleController {
     private final RoleService roleService;
 
     @PostMapping("create")
-    public RoleDto createRole(@RequestBody RoleDto roleDto){
+    public RoleDto createRole(@RequestBody RoleDto roleDto) {
         return roleService.createRole(roleDto);
     }
 
     @GetMapping("find/{id}")
-    public RoleDto findById(@PathVariable("id") Long id){
+    public RoleDto findById(@PathVariable("id") Long id) {
         return roleService.findById(id);
     }
 
     @PutMapping("update/{id}")
-    public RoleDto updateRole(@PathVariable Long id,@RequestBody RoleDto roleDto){
+    public RoleDto updateRole(@PathVariable("id") Long id, @RequestBody RoleDto roleDto) {
         return roleService.updateRole(id, roleDto);
+    }
 
+    @DeleteMapping("delete/{id}")
+    public void deleteRole(@PathVariable("id") Long id) {
+        roleService.deleteById(id);
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @Validated
 public class RoleDto {
 
-    private Long roleId;
+    private Long id;
 
     @NotBlank(message = "Name should not be blank.")
     private String name;
@@ -34,5 +34,15 @@ public class RoleDto {
 
     private LocalDateTime deletedAt;
 
-
+    @Override
+    public String toString() {
+        return "RoleDto{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", defaultPermissions='" + defaultPermissions + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
+                '}';
+    }
 }

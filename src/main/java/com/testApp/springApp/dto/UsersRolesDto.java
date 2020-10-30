@@ -1,7 +1,12 @@
 package com.testApp.springApp.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.validation.constraints.NotBlank;
 
+@Getter
+@Setter
 public class UsersRolesDto {
 
     private Long id;

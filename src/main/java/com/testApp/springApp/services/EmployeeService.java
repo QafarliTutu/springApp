@@ -63,12 +63,6 @@ public class EmployeeService {
             BeanUtils.copyProperties(employee, employeeDto);
             return employeeDto;
         } else throw new EmployeeNotFoundEx();
-//        Employee employee = new Employee();
-//        employee.setId(id);
-//        BeanUtils.copyProperties(employeeDto,employee);
-//        employeesRepo.save(employee);
-//        BeanUtils.copyProperties(employee,employeeDto);
-//        return employeeDto;
     }
 
     public void deleteEmployee(Long id) {

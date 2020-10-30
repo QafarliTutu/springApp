@@ -3,18 +3,15 @@ package com.testApp.springApp.controller;
 
 import com.testApp.springApp.dto.EmployeeDto;
 import com.testApp.springApp.services.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth/emp")
-public class EmpAuthController {
+@RequiredArgsConstructor
+public class EmployeeController {
 
-
-    private EmployeeService employeeService;
-
-    public EmpAuthController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private final EmployeeService employeeService;
 
     @PostMapping("create")
     public EmployeeDto createEmployee(@RequestBody EmployeeDto employeeDto) {
@@ -27,13 +24,12 @@ public class EmpAuthController {
     }
 
     @PutMapping("/update/{id}")
-    public EmployeeDto updateEmployee(@PathVariable("id") Long id,
-                                      @RequestBody EmployeeDto employeeDto){
-        return employeeService.updateEmployee(id,employeeDto);
+    public EmployeeDto updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeDto employeeDto) {
+        return employeeService.updateEmployee(id, employeeDto);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteEmployee(@PathVariable("id") Long id){
+    public void deleteEmployee(@PathVariable("id") Long id) {
         employeeService.deleteEmployee(id);
     }
 }

@@ -1,12 +1,10 @@
 package com.testApp.springApp.services;
 
 import com.testApp.springApp.dto.RoleDto;
-import com.testApp.springApp.exceptions.NotFoundException;
 import com.testApp.springApp.exceptions.RoleAlreadyExistEx;
 import com.testApp.springApp.exceptions.RoleNoteFoundEx;
 import com.testApp.springApp.model.Role;
 import com.testApp.springApp.repository.RoleRepo;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -21,22 +19,21 @@ public class RoleService {
     }
 
     public RoleDto createRole(RoleDto roleDto) {
-        boolean existByName = roleRepo.existByName(roleDto.getName());
-        if (!existByName) {
+        boolean existsByName = roleRepo.existsByName(roleDto.getName());
+        if (!existsByName) {
             Role role = new Role();
             BeanUtils.copyProperties(roleDto, role);
             roleRepo.save(role);
             BeanUtils.copyProperties(role, roleDto);
             return roleDto;
         } else throw new RoleAlreadyExistEx();
-
     }
 
     public RoleDto findById(Long id) {
         Optional<Role> byId = roleRepo.findById(id);
         if (byId.isPresent()) {
             RoleDto roleDto = new RoleDto();
-            BeanUtils.copyProperties(byId, roleDto);
+            BeanUtils.copyProperties(byId.get(), roleDto);
             return roleDto;
         } else throw new RoleNoteFoundEx();
 
@@ -46,13 +43,18 @@ public class RoleService {
         Optional<Role> byId = roleRepo.findById(id);
         if (byId.isPresent()) {
             Role role = byId.get();
+            System.out.println(role);
             BeanUtils.copyProperties(roleDto, role);
             role.setId(id);
             roleRepo.save(role);
             BeanUtils.copyProperties(role, roleDto);
+            System.out.println(roleDto);
             return roleDto;
         }
         throw new RoleNoteFoundEx();
     }
 
+    public void deleteById(Long id) {
+        roleRepo.deleteById(id);
+    }
 }

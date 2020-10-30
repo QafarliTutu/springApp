@@ -30,7 +30,7 @@ public class Role {
     @Column(name = "defaultPermissions")
     private String defaultPermissions;
 
-    @Column(name = "createdAt")
+    @Column(name = "createdAt",updatable = false,nullable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -43,4 +43,16 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private List<UsersRoles> users_roles;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", defaultPermissions='" + defaultPermissions + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", deletedAt=" + deletedAt +
+                '}';
+    }
 }

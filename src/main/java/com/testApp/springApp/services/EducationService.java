@@ -27,11 +27,15 @@ public class EducationService {
         } else throw new EducationNotFoundEx();
     }
 
-    public EducationDto createEducation(EducationDto educationDto) {
-        Education education = new Education();
-        BeanUtils.copyProperties(educationDto, education);
-        educationRepo.save(education);
-        BeanUtils.copyProperties(education, educationDto);
-        return educationDto;
+//    public EducationDto createEducation(EducationDto educationDto) {
+//        Education education = new Education();
+//        BeanUtils.copyProperties(educationDto, education);
+//        educationRepo.save(education);
+//        BeanUtils.copyProperties(education, educationDto);
+//        return educationDto;
+//    }
+
+    public void deleteEducation(Long id) {
+        educationRepo.deleteById(id);
     }
 }

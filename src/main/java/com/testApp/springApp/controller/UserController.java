@@ -1,21 +1,18 @@
 package com.testApp.springApp.controller;
 
-
-import com.testApp.springApp.dto.EmployeeDto;
 import com.testApp.springApp.dto.UserDto;
 import com.testApp.springApp.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth/user")
-public class UserAuthController {
+@RequiredArgsConstructor
+public class UserController {
 
 
     private UserService userService;
 
-    public UserAuthController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("create")
     public UserDto createUser(@RequestBody UserDto userDto) {
