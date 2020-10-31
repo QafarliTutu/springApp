@@ -34,7 +34,7 @@ public class EducationTrService {
 
         EducationTr educationTr = new EducationTr();
         BeanUtils.copyProperties(educationTrDto,educationTr);
-        educationTr.setEducationId(education);
+        educationTr.setEducation(education);
         educationTr.setLanguage(language);
         educationTrRepo.save(educationTr);
         BeanUtils.copyProperties(educationTr, educationTrDto);

@@ -2,6 +2,8 @@ package com.testApp.springApp.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;

@@ -63,7 +63,7 @@ public class Employee {
     @JoinColumn(name = "educationId")
     private Education education;
 
-    @OneToMany(mappedBy = "employee",cascade = CascadeType.REMOVE)// cascade
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.REMOVE)
     private Set<Users> users;
 
 }

@@ -16,8 +16,8 @@ public class LanguageDto {
     @NotBlank(message = "Name should not be blank.")
     private String name;
 
-//    @NotBlank(message = "Code should not be blank.")
-//    private String code;
+    @NotBlank(message = "Code should not be blank.")
+    private String code;
 
     private Boolean isVisible;
 

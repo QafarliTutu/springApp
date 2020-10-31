@@ -36,7 +36,7 @@ public class Education {
     @OneToMany(mappedBy = "education")
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "educationId")
+    @OneToMany(mappedBy = "education", cascade = CascadeType.REMOVE)
     private Set<EducationTr> educationTr;
 
 }

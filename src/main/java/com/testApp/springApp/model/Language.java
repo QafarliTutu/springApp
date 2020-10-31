@@ -24,13 +24,13 @@ public class Language {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "code")
-//    private String code;
+    @Column(name = "code")
+    private String code;
 
     @Column(name = "isVisible")
     private Boolean isVisible;
 
-    @OneToMany(mappedBy = "language")
+    @OneToMany(mappedBy = "language", cascade = CascadeType.REMOVE)
     private Set<EducationTr> educationTr;
 
 

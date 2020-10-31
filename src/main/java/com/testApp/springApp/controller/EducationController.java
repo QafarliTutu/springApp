@@ -14,10 +14,10 @@ public class EducationController {
 
     private final EducationService educationService;
 
-//    @PostMapping("create")
-//    public EducationDto createEducation(@RequestBody EducationDto educationDto){
-//        return educationService.createEducation(educationDto);
-//    }
+    @PostMapping("create")
+    public EducationDto createEducation(@RequestBody EducationDto educationDto){
+        return educationService.createEducation(educationDto);
+    }
 
     @GetMapping("find/{id}")
     public EducationDto findById(@PathVariable("id") Long id){
