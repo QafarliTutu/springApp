@@ -12,6 +12,5 @@ import java.util.Optional;
 public interface UserRoleRepo extends JpaRepository<UsersRoles,List<Long>> {
 
     List<UsersRoles> findAllByUsersId(Long id);
-    List<UsersRoles>  findAllRoleIdByUsersId(Long id);
     boolean existsByUsersId(Long id);
 }

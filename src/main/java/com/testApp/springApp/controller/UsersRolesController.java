@@ -14,7 +14,7 @@ public class UsersRolesController {
 
     @PostMapping("create")
     public UsersRolesDto createOrUpdateUserRole(@RequestBody UsersRolesDto usersRolesDto){
-        return usersRolesService.createOrUpdateUserRole(usersRolesDto);
+        return usersRolesService.createUserRole(usersRolesDto);
     }
 
     @GetMapping("find/{id}")

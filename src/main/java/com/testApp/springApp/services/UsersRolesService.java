@@ -13,6 +13,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -25,22 +26,12 @@ public class UsersRolesService {
     private final UserService userService;
 
 
-    public UsersRolesDto createOrUpdateUserRole(UsersRolesDto usersRolesDto) {
-//        userRoleRepo.findAllByUsersId(usersRolesDto.getUsersId())
-//                .forEach(ur -> {
-//                    if (!ur.getRole().getId().equals(usersRolesDto.getRolesId())){
-//                        BeanUtils.copyProperties(usersRolesDto,usersRoles);
-//                        if(usersRolesDto.getPermissions()==null){
-//                            RoleDto byId = roleService.findById(usersRolesDto.getRolesId());
-//                            usersRoles.setPermissions(byId.getDefaultPermissions());
-//                        }
-//                        userRoleRepo.save(usersRoles);
-//                    }
-//                });
-//        return usersRolesDto;
-        boolean b = userRoleRepo.existsByUsersId(usersRolesDto.getUsersId());
-        List<UsersRoles> allRoleIdByUsersId = userRoleRepo.findAllRoleIdByUsersId(usersRolesDto.getUsersId());
-        if(!b || ){
+    public UsersRolesDto createUserRole(UsersRolesDto usersRolesDto) {
+        List<Long> roles = userRoleRepo.findAllByUsersId(usersRolesDto.getUsersId())
+                    .stream()
+                    .map(usersRoles -> usersRoles.getRole().getId())
+                    .collect(Collectors.toList());
+        if(!roles.contains(usersRolesDto.getRolesId()) ){
             Role role = new Role();
             RoleDto roleDto = roleService.findById(usersRolesDto.getRolesId());
             BeanUtils.copyProperties(roleDto,role);
