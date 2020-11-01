@@ -10,6 +10,8 @@ import com.testApp.springApp.repository.EducationTrRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EducationTrService {
 
@@ -24,13 +26,19 @@ public class EducationTrService {
     }
 
     public EducationTrDto createEducationTr(EducationTrDto educationTrDto) {
+        Education education = new Education();
+        boolean ifExistOrNot = educationService.existById(educationTrDto.getEducationId());
+        if(!ifExistOrNot){
+            EducationDto educationDto1 = new EducationDto();
+            EducationDto education1 = educationService.createEducation(educationDto1);
+            BeanUtils.copyProperties(education1,education);
+        }else{
+            EducationDto existingEducationDto = educationService.findById(educationTrDto.getEducationId());
+            BeanUtils.copyProperties(existingEducationDto,education);
+        }
         Language language = new Language();
         LanguageDto languageDto = languageService.findById(educationTrDto.getLanguageId());
         BeanUtils.copyProperties(languageDto,language);
-
-        Education education = new Education();
-        EducationDto educationDto = educationService.findById(educationTrDto.getEducationId());
-        BeanUtils.copyProperties(educationDto, education);
 
         EducationTr educationTr = new EducationTr();
         BeanUtils.copyProperties(educationTrDto,educationTr);
@@ -39,6 +47,19 @@ public class EducationTrService {
         educationTrRepo.save(educationTr);
         BeanUtils.copyProperties(educationTr, educationTrDto);
         return educationTrDto;
+
+//        Optional<EducationDto> educationDto = educationService.findById(educationTrDto.getEducationId());
+//        Education education = new Education();
+//        if(educationDto.isPresent()) {
+//            BeanUtils.copyProperties(educationDto, education);
+//        }else {
+//            EducationDto educationDto1 = new EducationDto();
+//            EducationDto education1 = educationService.createEducation(educationDto1);
+//            BeanUtils.copyProperties(education1,education);
+//        }
     }
 
+    public EducationTrDto updateEducationTr(Long id, EducationTrDto educationTrDto) {
+        return null;
+    }
 }

@@ -24,7 +24,7 @@ public class EducationTr {
     private Long id;
 
     @Column(name = "name")
-    private String name;
+    private String name;//orta,fhdj
 
     @CreationTimestamp
     @Column(name = "createdAt",updatable = false,nullable = false)
@@ -36,10 +36,10 @@ public class EducationTr {
 
     @ManyToOne
     @JoinColumn(name = "languageId")
-    private Language language;
+    private Language language;//1,2
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne//(cascade = CascadeType.ALL)
     @JoinColumn(name = "educationId")
-    private Education education;
+    private Education education;//1
 }

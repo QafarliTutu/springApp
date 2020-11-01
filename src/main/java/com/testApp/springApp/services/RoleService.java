@@ -40,15 +40,14 @@ public class RoleService {
     }
 
     public RoleDto updateRole(Long id, RoleDto roleDto) {
-        Optional<Role> byId = roleRepo.findById(id);
-        if (byId.isPresent()) {
-            Role role = byId.get();
-            System.out.println(role);
+        Optional<Role> existingRole = roleRepo.findById(id);
+        if (existingRole.isPresent()) {
+            Role role = existingRole.get();
             BeanUtils.copyProperties(roleDto, role);
             role.setId(id);
             roleRepo.save(role);
             BeanUtils.copyProperties(role, roleDto);
-            System.out.println(roleDto);
+            roleDto.setCreatedAt(role.getCreatedAt());
             return roleDto;
         }
         throw new RoleNoteFoundEx();

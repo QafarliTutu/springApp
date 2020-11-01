@@ -34,15 +34,4 @@ public class RoleDto {
 
     private LocalDateTime deletedAt;
 
-    @Override
-    public String toString() {
-        return "RoleDto{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", defaultPermissions='" + defaultPermissions + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", deletedAt=" + deletedAt +
-                '}';
-    }
 }

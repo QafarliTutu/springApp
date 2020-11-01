@@ -23,7 +23,7 @@ public class Education {
     @Id
     @Column(name = "educationId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;//1
 
     @CreationTimestamp
     @Column(name = "createdAt",updatable = false,nullable = false)
@@ -36,7 +36,7 @@ public class Education {
     @OneToMany(mappedBy = "education")
     private List<Employee> employees;
 
-    @OneToMany(mappedBy = "education", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "education", cascade = CascadeType.ALL)
     private Set<EducationTr> educationTr;
 
 }

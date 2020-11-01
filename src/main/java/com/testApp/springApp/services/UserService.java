@@ -26,9 +26,7 @@ public class UserService {
 
     private final EmployeeService employeeService;
     private final EmailSenderService emailSenderService;
-    private final RoleRepo roleRepo;
     private final UserRepo userRepo;
-    private final UserRoleRepo userRoleRepo;
 
     public UserDto createUser(UserDto userDto){
         //find and convert EmployeeDto to Employee
@@ -45,7 +43,7 @@ public class UserService {
 
         //generate and send password
         String password = generatePassword();
-        sendEmail(employee.getEmail(),password);
+        //sendEmail(employee.getEmail(),password);
 
         //encode and set Password
         user.setPassword(password);

@@ -6,7 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -44,6 +44,18 @@ public class Users {
     private Employee employee;
 
     @OneToMany(mappedBy = "users")
-    private List<UsersRoles> users_roles;
+    private Set<UsersRoles> users_roles;
 
+//    @Override
+//    public String toString() {
+//        return "Users{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", password='" + password + '\'' +
+//                ", createdAt=" + createdAt +
+//                ", updatedAt=" + updatedAt +
+//                ", deletedAt=" + deletedAt +
+//                ", employee=" + employee +
+//                '}';
+//    }
 }

@@ -27,6 +27,10 @@ public class EducationService {
         } else throw new EducationNotFoundEx();
     }
 
+    public boolean existById(Long id){
+        return educationRepo.existsById(id);
+    }
+
     public EducationDto createEducation(EducationDto educationDto) {
         Education education = new Education();
         BeanUtils.copyProperties(educationDto, education);

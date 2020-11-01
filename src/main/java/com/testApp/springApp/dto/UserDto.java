@@ -25,7 +25,7 @@ public class UserDto {
 
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Employee should not be blank.")
     private Long employeeId;
 
     @NotBlank
@@ -37,7 +37,15 @@ public class UserDto {
 
     private LocalDateTime deletedAt;
 
-
-
-
+//    @Override
+//    public String toString() {
+//        return "UserDto{" +
+//                "id=" + id +
+//                ", employeeId=" + employeeId +
+//                ", name='" + name + '\'' +
+//                ", createdAt=" + createdAt +
+//                ", updatedAt=" + updatedAt +
+//                ", deletedAt=" + deletedAt +
+//                '}';
+//    }
 }

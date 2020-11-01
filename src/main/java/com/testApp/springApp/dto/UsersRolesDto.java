@@ -11,10 +11,10 @@ public class UsersRolesDto {
 
     private Long id;
 
-    @NotBlank(message = "permissions required!")
+   // @NotBlank(message = "Permissions required!")
     private String permissions;
 
-    @NotBlank(message = "Roles required")
+    @NotBlank(message = "Roles required!")
     private Long rolesId;
 
     @NotBlank(message = "Select any User!")

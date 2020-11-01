@@ -3,10 +3,7 @@ package com.testApp.springApp.controller;
 import com.testApp.springApp.dto.EducationTrDto;
 import com.testApp.springApp.services.EducationTrService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth/educationTr")
@@ -18,6 +15,13 @@ public class EducationTrController {
     @PostMapping("create")
     public EducationTrDto createEducationTr(@RequestBody EducationTrDto educationTrDto){
         return educationTrService.createEducationTr(educationTrDto);
+    }
+
+
+    @PutMapping("update/{id}")
+    public EducationTrDto updateEducationTr(@PathVariable("id") Long id ,
+                                            @RequestBody EducationTrDto educationTrDto){
+        return educationTrService.updateEducationTr(id,educationTrDto);
     }
 
 
