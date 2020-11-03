@@ -26,6 +26,7 @@ public class UsersRolesService {
     private final UserService userService;
 
 
+<<<<<<< HEAD
     public UsersRolesDto createUsersRoles(UsersRolesDto usersRolesDto) {
 //        List<Long> roles = userRoleRepo.findAllByUsersId(usersRolesDto.getUsersId())
 //                .stream()
@@ -51,6 +52,32 @@ public class UsersRolesService {
 //            BeanUtils.copyProperties(usersRoles, usersRolesDto);
 //        }
         return usersRolesDto;
+=======
+    public UsersRolesDto createUserRole(UsersRolesDto usersRolesDto) {
+        List<Long> roles = userRoleRepo.findAllByUsersId(usersRolesDto.getUsersId())
+                    .stream()
+                    .map(usersRoles -> usersRoles.getRole().getId())
+                    .collect(Collectors.toList());
+        if(!roles.contains(usersRolesDto.getRolesId()) ){
+            Role role = new Role();
+            RoleDto roleDto = roleService.findById(usersRolesDto.getRolesId());
+            BeanUtils.copyProperties(roleDto,role);
+
+            Users user = new Users();
+            UserDto userDto = userService.findById(usersRolesDto.getUsersId());
+            BeanUtils.copyProperties(userDto,user);
+
+            UsersRoles usersRoles = new UsersRoles();
+            BeanUtils.copyProperties(usersRolesDto,usersRoles);
+            if(usersRolesDto.getPermissions()==null){
+                usersRoles.setPermissions(role.getDefaultPermissions());
+            }
+            usersRoles.setRole(role);
+            usersRoles.setUsers(user);
+            userRoleRepo.save(usersRoles);
+            BeanUtils.copyProperties(usersRoles,usersRolesDto);
+        }return usersRolesDto;
+>>>>>>> bbebae0f0b2a38530d713212e9898d6467a9989e
 
     }
 

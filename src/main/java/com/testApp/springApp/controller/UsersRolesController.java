@@ -15,8 +15,13 @@ public class UsersRolesController {
     private final UsersRolesService usersRolesService;
 
     @PostMapping("create")
+<<<<<<< HEAD
     public UsersRolesDto createUsersRoles(@RequestBody UsersRolesDto usersRolesDto) {
         return usersRolesService.createUsersRoles(usersRolesDto);
+=======
+    public UsersRolesDto createOrUpdateUserRole(@RequestBody UsersRolesDto usersRolesDto){
+        return usersRolesService.createUserRole(usersRolesDto);
+>>>>>>> bbebae0f0b2a38530d713212e9898d6467a9989e
     }
 
     @GetMapping("find/{id}")
