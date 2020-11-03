@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "educationTr")
-public class EducationTr {
+@Table(name = "educationTranslations")
+public class EducationTranslations {
 
     @Id
-    @Column(name = "educationTrId")
+    @Column(name = "eTranslateId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -27,19 +27,20 @@ public class EducationTr {
     private String name;
 
     @CreationTimestamp
-    @Column(name = "createdAt",updatable = false,nullable = false)
+    @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "languageId")
     private Language language;
 
 
-    @ManyToOne//(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "educationId")
-    private Education education;
+    private Education educationId;
+
 }
