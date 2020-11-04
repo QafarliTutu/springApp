@@ -1,7 +1,7 @@
 package com.testApp.springApp.controller;
 
-import com.testApp.springApp.dto.UsersRolesDto;
-import com.testApp.springApp.services.UsersRolesService;
+import com.testApp.springApp.dto.UserRoleDto;
+import com.testApp.springApp.services.UserRoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,17 +10,23 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UsersRolesController {
 
-    private final UsersRolesService usersRolesService;
+    private final UserRoleService userRoleService;
 
     @PostMapping("create")
-    public UsersRolesDto createOrUpdateUserRole(@RequestBody UsersRolesDto usersRolesDto){
-        return usersRolesService.createOrUpdateUserRole(usersRolesDto);
+    public UserRoleDto createUserRole(@RequestBody UserRoleDto userRoleDto) {
+        return userRoleService.createUserRole(userRoleDto);
     }
 
     @GetMapping("find/{id}")
-    public UsersRolesDto findById(@PathVariable("id") Long id){
-        return usersRolesService.findById(id);
+    public UserRoleDto findById(@PathVariable("id") Long id) {
+        return userRoleService.findById(id);
     }
+
+    @PutMapping("update/{id}")
+    public UserRoleDto updateUserRole(@PathVariable("id") Long id, @RequestBody UserRoleDto userRoleDto) {
+        return userRoleService.updateUserRole(id, userRoleDto);
+    }
+
 
 //    public List<UsersRoles> getAll(Long id){
 //        return usersRolesService.getAll(id);

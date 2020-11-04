@@ -7,6 +7,7 @@ import com.testApp.springApp.repository.EducationRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -21,7 +22,7 @@ public class EducationService {
     public EducationDto findById(Long id) {
         EducationDto educationDto = new EducationDto();
         Optional<Education> byId = educationRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             BeanUtils.copyProperties(byId.get(), educationDto);
             return educationDto;
         } else throw new EducationNotFoundEx();
@@ -40,7 +41,15 @@ public class EducationService {
     }
 
     public void deleteEducation(Long id) {
-        educationRepo.deleteById(id);
+        //educationRepo.deleteById(id);
+        Optional<Education> byId = educationRepo.findById(id);
+        if(byId.isPresent() && byId.get().getStatus()){
+            Education education = byId.get();
+            education.setStatus(false);
+            education.setDeletedAt(LocalDateTime.now());
+            educationRepo.save(education);
+        }
+
     }
 
 }

@@ -1,7 +1,5 @@
 package com.testApp.springApp.dto;
 
-import com.testApp.springApp.model.Education;
-import com.testApp.springApp.model.Users;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +9,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter

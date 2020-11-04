@@ -17,5 +17,7 @@ public class EducationDto {
 
     private LocalDateTime updatedAt;
 
+    private LocalDateTime deletedAt;
+
 
 }

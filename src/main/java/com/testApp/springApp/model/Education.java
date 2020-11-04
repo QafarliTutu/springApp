@@ -33,10 +33,16 @@ public class Education {
     @Column(name = "updatedAt")
     private LocalDateTime updatedAt;
 
+    @Column(name = "deletedAt")
+    private LocalDateTime deletedAt;
+
     @OneToMany(mappedBy = "education")
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "education", cascade = CascadeType.ALL)
     private Set<EducationTr> educationTr;
+
+    @Column(name = "status",columnDefinition = "boolean default true")
+    private Boolean status;
 
 }

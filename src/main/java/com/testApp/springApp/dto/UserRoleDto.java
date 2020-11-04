@@ -4,10 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class UsersRolesDto {
+public class UserRoleDto {
 
     private Long id;
 
@@ -15,9 +16,14 @@ public class UsersRolesDto {
     private String permissions;
 
     @NotBlank(message = "Roles required!")
-    private Long rolesId;
+    private Long roleId;
 
     @NotBlank(message = "Select any User!")
-    private Long usersId;
+    private Long userId;
 
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
+
+    private LocalDateTime deletedAt;
 }

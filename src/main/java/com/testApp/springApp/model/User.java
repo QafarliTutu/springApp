@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "users")
-public class Users {
+public class User {
 
     @Id
     @Column(name = "userId")
@@ -43,19 +43,9 @@ public class Users {
     @JoinColumn(name = "employeeId")
     private Employee employee;
 
-    @OneToMany(mappedBy = "users")
-    private Set<UsersRoles> users_roles;
+    @OneToMany(mappedBy = "user")
+    private Set<UserRole> user_role;
 
-//    @Override
-//    public String toString() {
-//        return "Users{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", password='" + password + '\'' +
-//                ", createdAt=" + createdAt +
-//                ", updatedAt=" + updatedAt +
-//                ", deletedAt=" + deletedAt +
-//                ", employee=" + employee +
-//                '}';
-//    }
+    @Column(name = "status",columnDefinition = "boolean default true")
+    private Boolean status;
 }

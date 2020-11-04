@@ -3,11 +3,13 @@ package com.testApp.springApp.services;
 import com.testApp.springApp.dto.LanguageDto;
 import com.testApp.springApp.exceptions.LanguageAlreadyExistsEx;
 import com.testApp.springApp.exceptions.LanguageNotFoundEx;
+import com.testApp.springApp.model.Education;
 import com.testApp.springApp.model.Language;
 import com.testApp.springApp.repository.LanguageRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -52,6 +54,13 @@ public class LanguageService {
     }
 
     public void deleteById(Long id) {
-        languageRepo.deleteById(id);
+        //languageRepo.deleteById(id);
+        Optional<Language> byId = languageRepo.findById(id);
+        if(byId.isPresent() && byId.get().getStatus()){
+            Language language = byId.get();
+            language.setStatus(false);
+            language.setDeletedAt(LocalDateTime.now());
+            languageRepo.save(language);
+        }
     }
 }

@@ -3,11 +3,13 @@ package com.testApp.springApp.services;
 import com.testApp.springApp.dto.RoleDto;
 import com.testApp.springApp.exceptions.RoleAlreadyExistEx;
 import com.testApp.springApp.exceptions.RoleNoteFoundEx;
+import com.testApp.springApp.model.Education;
 import com.testApp.springApp.model.Role;
 import com.testApp.springApp.repository.RoleRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -54,6 +56,13 @@ public class RoleService {
     }
 
     public void deleteById(Long id) {
-        roleRepo.deleteById(id);
+        //roleRepo.deleteById(id);
+        Optional<Role> byId = roleRepo.findById(id);
+        if(byId.isPresent() && byId.get().getStatus()){
+            Role education = byId.get();
+            education.setStatus(false);
+            education.setDeletedAt(LocalDateTime.now());
+            roleRepo.save(education);
+        }
     }
 }

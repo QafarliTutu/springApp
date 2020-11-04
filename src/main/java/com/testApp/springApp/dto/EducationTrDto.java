@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -15,15 +16,16 @@ public class EducationTrDto {
     private Long id;
 
     @NotBlank(message = "Name should not be blank.")
-    private String name;
+    private Map<Integer, String> name;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
-    @NotBlank(message = "Language should not be blank.")
-    private Long languageId;
+    private LocalDateTime deletedAt;
 
-//    @NotBlank(message = "Education should not be blank.")
-    private Long educationId;
+    @NotBlank(message = "Language should not be blank.")
+    private Map<Integer, Long> languageId;
+
+
 }

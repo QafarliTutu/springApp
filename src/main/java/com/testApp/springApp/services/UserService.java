@@ -4,12 +4,10 @@ package com.testApp.springApp.services;
 import com.testApp.springApp.dto.EmployeeDto;
 import com.testApp.springApp.dto.UserDto;
 import com.testApp.springApp.exceptions.UserNotFoundEx;
+import com.testApp.springApp.model.Education;
 import com.testApp.springApp.model.Employee;
-import com.testApp.springApp.model.Users;
+import com.testApp.springApp.model.User;
 
-import com.testApp.springApp.repository.EmployeesRepo;
-import com.testApp.springApp.repository.RoleRepo;
-import com.testApp.springApp.repository.UserRoleRepo;
 import com.testApp.springApp.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Log4j2
@@ -36,7 +35,7 @@ public class UserService {
         System.out.println(employee);
 
         //convert UserDto to User
-        Users user = new Users();
+        User user = new User();
         BeanUtils.copyProperties(userDto,user);
         user.setEmployee(employee);
         System.out.println(user);
@@ -68,7 +67,7 @@ public class UserService {
 
     public UserDto findById(Long id) {
         UserDto userDto = new UserDto();
-        Optional<Users> byId = userRepo.findById(id);
+        Optional<User> byId = userRepo.findById(id);
         if (byId.isPresent()) {
             BeanUtils.copyProperties(byId.get(), userDto);
             return userDto;
@@ -76,7 +75,7 @@ public class UserService {
     }
 
     public UserDto updateUser(Long id, UserDto userDto){
-        Users user = new Users();
+        User user = new User();
         user.setId(id);
         BeanUtils.copyProperties(userDto,user);
         userRepo.save(user);
@@ -85,6 +84,13 @@ public class UserService {
     }
 
     public void deleteUser(Long id){
-        userRepo.deleteById(id);
+        //userRepo.deleteById(id);
+        Optional<User> byId = userRepo.findById(id);
+        if(byId.isPresent() && byId.get().getStatus()){
+            User education = byId.get();
+            education.setStatus(false);
+            education.setDeletedAt(LocalDateTime.now());
+            userRepo.save(education);
+        }
     }
 }

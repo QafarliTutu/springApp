@@ -1,7 +1,6 @@
 package com.testApp.springApp.model;
 
 
-import com.testApp.springApp.enums.RoleEnum;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -42,6 +41,9 @@ public class Role {
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "role")
-    private List<UsersRoles> users_roles;
+    private List<UserRole> user_role;
+
+    @Column(name = "status",columnDefinition = "boolean default true")
+    private Boolean status;
 
 }

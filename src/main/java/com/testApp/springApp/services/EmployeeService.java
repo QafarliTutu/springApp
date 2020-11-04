@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Log4j2
@@ -53,11 +54,8 @@ public class EmployeeService {
     public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
         Optional<Employee> byId = employeesRepo.findById(id);
         if (byId.isPresent()) {
-
-            System.out.println("ById hassscode" + byId.hashCode());
             Employee employee = byId.get();
             BeanUtils.copyProperties(employeeDto, employee);
-            System.out.println("ById hassscode" + employee.hashCode());
             employee.setId(id);
             employeesRepo.save(employee);
             BeanUtils.copyProperties(employee, employeeDto);
@@ -66,7 +64,14 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(Long id) {
-        employeesRepo.deleteById(id);
+       // employeesRepo.deleteById(id);
+        Optional<Employee> byId = employeesRepo.findById(id);
+        if(byId.isPresent() && byId.get().getStatus()){
+            Employee employee = byId.get();
+            employee.setStatus(false);
+            employee.setDeletedAt(LocalDateTime.now());
+            employeesRepo.save(employee);
+        }
     }
 
 

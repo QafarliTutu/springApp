@@ -64,25 +64,8 @@ public class Employee {
     private Education education;
 
     @OneToMany(mappedBy = "employee",cascade = CascadeType.REMOVE)
-    private Set<Users> users;
+    private Set<User> users;
 
-//    @Override
-//    public String toString() {
-//        return "Employee{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", surname='" + surname + '\'' +
-//                ", email='" + email + '\'' +
-//                ", image='" + image + '\'' +
-//                ", address='" + address + '\'' +
-//                ", contact='" + contact + '\'' +
-//                ", birthdate='" + birthdate + '\'' +
-//                ", salary=" + salary +
-//                ", DSMF=" + DSMF +
-//                ", createdAt=" + createdAt +
-//                ", updatedAt=" + updatedAt +
-//                ", deletedAt=" + deletedAt +
-//                ", education=" + education +
-//                '}';
-//    }
+    @Column(name = "status",columnDefinition = "boolean default true")
+    private Boolean status;
 }

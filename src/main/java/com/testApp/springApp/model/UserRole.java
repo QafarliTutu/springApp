@@ -1,9 +1,6 @@
 package com.testApp.springApp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -13,18 +10,25 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "educationTr")
-public class EducationTr {
+@RequiredArgsConstructor
+@Table(name = "usersRoles")
+public class UserRole {
 
     @Id
-    @Column(name = "educationTrId")
+    @Column(name = "userRoleId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;//orta,fhdj
+    @Column(name = "permissions")
+    private String permissions;
+
+    @ManyToOne//(cascade = CascadeType.ALL)
+    @JoinColumn(name = "roleId")
+    private Role role;
+
+    @ManyToOne//(cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId")
+    private User user;
 
     @CreationTimestamp
     @Column(name = "createdAt",updatable = false,nullable = false)
@@ -37,15 +41,7 @@ public class EducationTr {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @ManyToOne
-    @JoinColumn(name = "languageId")
-    private Language language;
-
-
-    @ManyToOne//(cascade = CascadeType.ALL)
-    @JoinColumn(name = "educationId")
-    private Education education;
-
     @Column(name = "status",columnDefinition = "boolean default true")
     private Boolean status;
+
 }
