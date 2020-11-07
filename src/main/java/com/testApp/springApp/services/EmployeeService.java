@@ -43,7 +43,7 @@ public class EmployeeService {
 
     public EmployeeDto findById(Long id) {
         Optional<Employee> byId = employeesRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             EmployeeDto employeeDto = new EmployeeDto();
             BeanUtils.copyProperties(byId.get(), employeeDto);
             return employeeDto;
@@ -53,7 +53,7 @@ public class EmployeeService {
 
     public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
         Optional<Employee> byId = employeesRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             Employee employee = byId.get();
             BeanUtils.copyProperties(employeeDto, employee);
             employee.setId(id);

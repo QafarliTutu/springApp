@@ -26,5 +26,12 @@ public class EducationTrController {
         return educationTrService.updateEducationTr(id,educationTrDto);
     }
 
+    @DeleteMapping("delete/{id}")
+    public void deleteEducationTr(@PathVariable("id") Long id){
+         educationTrService.deleteEducationTr(id);
+    }
+
+
+
 
 }

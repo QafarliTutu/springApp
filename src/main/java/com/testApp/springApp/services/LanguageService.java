@@ -34,7 +34,7 @@ public class LanguageService {
 
     public LanguageDto findById(Long id) {
         Optional<Language> byId = languageRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             LanguageDto languageDto = new LanguageDto();
             BeanUtils.copyProperties(byId.get(), languageDto);
             return languageDto;
@@ -43,7 +43,7 @@ public class LanguageService {
 
     public LanguageDto updateLanguage(Long id, LanguageDto languageDto) {
         Optional<Language> byId = languageRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             Language language = byId.get();
             BeanUtils.copyProperties(languageDto, language);
             language.setId(id);

@@ -26,4 +26,6 @@ public class UserRoleDto {
     private LocalDateTime updatedAt;
 
     private LocalDateTime deletedAt;
+
+    private Boolean status = true;
 }

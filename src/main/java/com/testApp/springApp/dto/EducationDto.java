@@ -19,5 +19,7 @@ public class EducationDto {
 
     private LocalDateTime deletedAt;
 
+    private Boolean status = true;
+
 
 }

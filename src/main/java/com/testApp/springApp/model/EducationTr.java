@@ -46,6 +46,6 @@ public class EducationTr {
     @JoinColumn(name = "educationId")
     private Education education;
 
-    @Column(name = "status",columnDefinition = "boolean default true")
+    @Column(name = "status")
     private Boolean status;
 }

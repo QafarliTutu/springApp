@@ -66,6 +66,6 @@ public class Employee {
     @OneToMany(mappedBy = "employee",cascade = CascadeType.REMOVE)
     private Set<User> users;
 
-    @Column(name = "status",columnDefinition = "boolean default true")
+    @Column(name = "status")
     private Boolean status;
 }

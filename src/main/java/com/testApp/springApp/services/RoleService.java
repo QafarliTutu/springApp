@@ -33,7 +33,7 @@ public class RoleService {
 
     public RoleDto findById(Long id) {
         Optional<Role> byId = roleRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             RoleDto roleDto = new RoleDto();
             BeanUtils.copyProperties(byId.get(), roleDto);
             return roleDto;
@@ -43,7 +43,7 @@ public class RoleService {
 
     public RoleDto updateRole(Long id, RoleDto roleDto) {
         Optional<Role> existingRole = roleRepo.findById(id);
-        if (existingRole.isPresent()) {
+        if (existingRole.isPresent() && existingRole.get().getStatus()) {
             Role role = existingRole.get();
             BeanUtils.copyProperties(roleDto, role);
             role.setId(id);

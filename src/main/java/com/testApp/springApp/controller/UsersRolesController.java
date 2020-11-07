@@ -28,8 +28,5 @@ public class UsersRolesController {
     }
 
 
-//    public List<UsersRoles> getAll(Long id){
-//        return usersRolesService.getAll(id);
-//    }
 
 }

@@ -41,7 +41,7 @@ public class UserRole {
     @Column(name = "deletedAt")
     private LocalDateTime deletedAt;
 
-    @Column(name = "status",columnDefinition = "boolean default true")
+    @Column(name = "status")
     private Boolean status;
 
 }

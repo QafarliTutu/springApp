@@ -1,5 +1,6 @@
 package com.testApp.springApp.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,8 @@ public class LanguageDto {
     private String code;
 
     private Boolean isVisible;
+
+    private Boolean status = true;
 
     private LocalDateTime createdAt;
 

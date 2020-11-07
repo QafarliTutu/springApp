@@ -20,13 +20,12 @@ public class RoleDto {
     @NotBlank(message = "Deafult permissions should not be blank.")
     private String defaultPermissions;
 
-
     private LocalDateTime createdAt;
-
 
     private LocalDateTime updatedAt;
 
-
     private LocalDateTime deletedAt;
+
+    private Boolean status = true;
 
 }

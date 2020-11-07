@@ -68,13 +68,13 @@ public class UserService {
     public UserDto findById(Long id) {
         UserDto userDto = new UserDto();
         Optional<User> byId = userRepo.findById(id);
-        if (byId.isPresent()) {
+        if (byId.isPresent() && byId.get().getStatus()) {
             BeanUtils.copyProperties(byId.get(), userDto);
             return userDto;
         } else throw new UserNotFoundEx();
     }
 
-    public UserDto updateUser(Long id, UserDto userDto){
+    public UserDto updateUser(Long id, UserDto userDto){//TODO NIYE FINDBYID ILE YOXLAMAMISIQ?
         User user = new User();
         user.setId(id);
         BeanUtils.copyProperties(userDto,user);

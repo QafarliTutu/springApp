@@ -42,7 +42,7 @@ public class Education {
     @OneToMany(mappedBy = "education", cascade = CascadeType.ALL)
     private Set<EducationTr> educationTr;
 
-    @Column(name = "status",columnDefinition = "boolean default true")
+    @Column(name = "status")
     private Boolean status;
 
 }

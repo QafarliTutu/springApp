@@ -49,13 +49,10 @@ public class UserRoleService {
 
     }
 
-    public UserRoleDto findById(Long id) {
+    public UserRoleDto findById(Long id) {//TODO USER_ID YE GORE YOXSA ROLE_ID YE GORE?
         return null;
     }
 
-    public List<UserRole> getAll(Long id) {
-        return null;
-    }
 
     public UserRoleDto updateUserRole(Long id, UserRoleDto userRoleDto) {
         boolean existsByUserId = userRoleRepo.existsByUserId(userRoleDto.getUserId());

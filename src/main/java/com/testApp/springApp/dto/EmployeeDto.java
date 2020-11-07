@@ -50,4 +50,6 @@ public class EmployeeDto {
 
     private LocalDateTime deletedAt;
 
+    private Boolean status = true;
+
 }

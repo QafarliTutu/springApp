@@ -49,8 +49,8 @@ public class Language {
     private LocalDateTime deletedAt;
 
     @Column(name = "status")
-    @ColumnDefault(value = "true")
-    private Boolean status;
+    //@ColumnDefault(value = "true")
+    private Boolean status ;
 
 
 }

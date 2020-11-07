@@ -46,6 +46,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserRole> user_role;
 
-    @Column(name = "status",columnDefinition = "boolean default true")
+    @Column(name = "status")
     private Boolean status;
 }
